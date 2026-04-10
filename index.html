@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorteador de Cartas</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin-top: 50px;
+      perspective: 1000px;
+    }
+
+    img {
+      margin-top: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 200px;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .girando {
+      animation: girarHorizontal 0.3s linear infinite;
+    }
+
+    @keyframes girarHorizontal {
+      from { transform: rotateX(0deg); }
+      to { transform: rotateX(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Sorteador de Cartas</h1>
+
+  <img id="carta" src="imagens/curinga.png" alt="Carta">
+
+  <script>
+    const cartas = [
+      "imagens/2+.png",
+      "imagens/4++.png",
+      "imagens/curinga.png",
+      "imagens/pular.png",
+      "imagens/reverter.png"
+    ];
+
+    const cartaImg = document.getElementById("carta");
+    let animando = false;
+
+    function cartaAleatoria() {
+      const indice = Math.floor(Math.random() * cartas.length);
+      return cartas[indice];
+    }
+
+    function animarSorteio() {
+      if (animando) return;
+      animando = true;
+
+      cartaImg.classList.add("girando");
+
+      let tempo = 100;
+      let repeticoes = 0;
+      const maxRepeticoes = 12;
+
+      function trocarCarta() {
+        cartaImg.src = cartaAleatoria();
+        repeticoes++;
+
+        if (repeticoes < maxRepeticoes) {
+          tempo += 40;
+          setTimeout(trocarCarta, tempo);
+        } else {
+          cartaImg.classList.remove("girando");
+          cartaImg.style.transform = "rotateX(0deg)";
+          cartaImg.src = cartaAleatoria();
+          animando = false;
+        }
+      }
+
+      trocarCarta();
+    }
+
+    cartaImg.addEventListener("click", animarSorteio);
+  </script>
+</body>
+</html>
