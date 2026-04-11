@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Sorteador de Cartas</title>
+  <title>UNA só Cefaléia</title>
 
   <style>
     body {
@@ -11,6 +11,10 @@
       background: #f4f4f4;
       margin-top: 50px;
       perspective: 1000px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
     }
 
     img {
@@ -30,23 +34,48 @@
       from { transform: rotateX(0deg); }
       to { transform: rotateX(360deg); }
     }
+
+    #instrucao {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
   </style>
 </head>
 <body>
-  <h1>UNA só cefaleia</h1>
+  <h1>UNA só Cefaléia</h1>
 
   <img id="carta" src="imagens/curinga.png" alt="Carta">
 
+  <p id="instrucao">Você tem direito a dizer qual o diagnóstico provável</p>
+
   <script>
     const cartas = [
-      "imagens/2+.png",
-      "imagens/4++.png",
-      "imagens/curinga.png",
-      "imagens/pular.png",
-      "imagens/reverter.png"
+      {
+        img: "imagens/2+.png",
+        texto: "Você tem direito a 2 respostas NEGATIVAS"
+      },
+      {
+        img: "imagens/4++.png",
+        texto: "Você tem direito a 2 respostas POSITIVAS e 2 NEGATIVAS"
+      },
+      {
+        img: "imagens/curinga.png",
+        texto: "Você tem direito a dizer qual o diagnóstico provável"
+      },
+      {
+        img: "imagens/pular.png",
+        texto: "Passou a sua vez"
+      },
+      {
+        img: "imagens/reverter.png",
+        texto: "Retorne para o grupo anterior"
+      }
     ];
 
     const cartaImg = document.getElementById("carta");
+    const instrucao = document.getElementById("instrucao");
     let animando = false;
 
     function cartaAleatoria() {
@@ -62,19 +91,25 @@
 
       let tempo = 60;
       let repeticoes = 0;
-      const maxRepeticoes = 6;
+      const maxRepeticoes = 12;
 
       function trocarCarta() {
-        cartaImg.src = cartaAleatoria();
+        const carta = cartaAleatoria();
+        cartaImg.src = carta.img;
+        instrucao.textContent = carta.texto;
         repeticoes++;
 
         if (repeticoes < maxRepeticoes) {
-          tempo += 40;
+          tempo += 20;
           setTimeout(trocarCarta, tempo);
         } else {
           cartaImg.classList.remove("girando");
           cartaImg.style.transform = "rotateX(0deg)";
-          cartaImg.src = cartaAleatoria();
+
+          const cartaFinal = cartaAleatoria();
+          cartaImg.src = cartaFinal.img;
+          instrucao.textContent = cartaFinal.texto;
+
           animando = false;
         }
       }
