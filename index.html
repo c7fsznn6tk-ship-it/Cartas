@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra de Carta Estilo UNO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="scene">
+    <section class="table">
+      <div class="intro">
+        <p class="eyebrow">Mini cenário</p>
+        <h1>Compre uma carta aleatória</h1>
+        <p class="description">
+          Clique no baralho para revelar uma carta inspirada no estilo UNO.
+        </p>
+      </div>
+
+      <div class="play-area">
+        <button class="deck" id="draw-button" type="button" aria-label="Comprar uma carta do baralho">
+          <span class="deck-stack deck-stack-one"></span>
+          <span class="deck-stack deck-stack-two"></span>
+          <span class="deck-face">
+            <span class="deck-title">UNO</span>
+            <span class="deck-subtitle">Clique para comprar</span>
+          </span>
+        </button>
+
+        <article class="card-display is-hidden" id="drawn-card" aria-live="polite">
+          <div class="card-shell" id="card-shell">
+            <span class="card-label" id="card-color">Cor</span>
+            <strong class="card-value" id="card-value">0</strong>
+            <span class="card-type" id="card-type">Número</span>
+          </div>
+          <p class="card-message" id="card-message">Nenhuma carta comprada ainda.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

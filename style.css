@@ -1,0 +1,269 @@
+:root {
+  --bg-top: #16324f;
+  --bg-bottom: #0a1624;
+  --table-green: #14532d;
+  --table-green-soft: rgba(45, 125, 71, 0.8);
+  --card-red: #d62828;
+  --card-yellow: #f4b400;
+  --card-blue: #1d4ed8;
+  --card-green: #16a34a;
+  --card-black: #1f2937;
+  --text-main: #f8fafc;
+  --text-muted: #dbe4ee;
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.09), transparent 30%),
+    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.scene {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.table {
+  width: min(960px, 100%);
+  padding: 36px;
+  border-radius: 32px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at center, var(--table-green-soft), var(--table-green));
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.intro {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 32px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #bbf7d0;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.description {
+  margin: 14px 0 0;
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+.play-area {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.deck {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 180ms ease;
+}
+
+.deck:hover {
+  transform: translateY(-6px) rotate(-2deg);
+}
+
+.deck:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.deck-stack,
+.deck-face,
+.card-shell {
+  border-radius: 24px;
+}
+
+.deck-stack {
+  position: absolute;
+  inset: 0;
+  background: #0f172a;
+  border: 3px solid rgba(255, 255, 255, 0.14);
+  box-shadow: var(--shadow);
+}
+
+.deck-stack-one {
+  transform: rotate(-7deg) translate(-10px, 10px);
+}
+
+.deck-stack-two {
+  transform: rotate(6deg) translate(10px, 4px);
+}
+
+.deck-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.14), transparent 42%),
+    linear-gradient(135deg, #dc2626, #2563eb 48%, #facc15 70%, #16a34a);
+  border: 5px solid #f8fafc;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.deck-face::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  transform: rotate(-22deg);
+}
+
+.deck-title,
+.deck-subtitle {
+  position: relative;
+  z-index: 1;
+}
+
+.deck-title {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #111827;
+}
+
+.deck-subtitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.card-display {
+  min-width: min(280px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.card-display.is-hidden {
+  opacity: 0.55;
+}
+
+.card-shell {
+  width: 220px;
+  height: 320px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 5px solid rgba(255, 255, 255, 0.95);
+  background: var(--card-black);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.card-shell::before {
+  content: "";
+  position: absolute;
+}
+
+.card-label,
+.card-type {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card-label {
+  align-self: flex-start;
+}
+
+.card-value {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.card-type {
+  align-self: flex-end;
+}
+
+.card-message {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.card-shell.red {
+  background: var(--card-red);
+}
+
+.card-shell.yellow {
+  background: var(--card-yellow);
+  color: #111827;
+}
+
+.card-shell.blue {
+  background: var(--card-blue);
+}
+
+.card-shell.green {
+  background: var(--card-green);
+}
+
+.card-shell.wild {
+  background:
+    linear-gradient(135deg, var(--card-red) 0 25%, var(--card-blue) 25% 50%, var(--card-yellow) 50% 75%, var(--card-green) 75% 100%);
+  color: #ffffff;
+}
+
+@media (max-width: 720px) {
+  .table {
+    padding: 24px;
+  }
+
+  .play-area {
+    gap: 24px;
+  }
+
+  .deck,
+  .card-shell {
+    width: 190px;
+    height: 280px;
+  }
+
+  .deck-title {
+    font-size: 2.5rem;
+  }
+
+  .card-value {
+    font-size: 3.8rem;
+  }
+}
