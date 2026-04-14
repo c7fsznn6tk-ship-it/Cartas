@@ -28,10 +28,27 @@
         </button>
 
         <article class="card-display is-hidden" id="drawn-card" aria-live="polite">
-          <div class="card-shell" id="card-shell">
-            <span class="card-label" id="card-color">Cor</span>
-            <strong class="card-value" id="card-value">0</strong>
-            <span class="card-type" id="card-type">Número</span>
+          <div class="card-flip" id="card-flip">
+            <div class="card-shell card-back">
+              <div class="card-back-mark">UNO</div>
+              <div class="card-back-ring"></div>
+              <div class="card-back-stripe"></div>
+            </div>
+
+            <div class="card-shell card-front" id="card-shell">
+              <span class="card-label" id="card-color">Cor</span>
+              <span class="corner-value corner-top" id="card-corner-top">0</span>
+
+              <div class="card-centerpiece">
+                <div class="card-orbit"></div>
+                <div class="card-core">
+                  <strong class="card-value" id="card-value">0</strong>
+                </div>
+              </div>
+
+              <span class="corner-value corner-bottom" id="card-corner-bottom">0</span>
+              <span class="card-type" id="card-type">Número</span>
+            </div>
           </div>
           <p class="card-message" id="card-message">Nenhuma carta comprada ainda.</p>
         </article>
